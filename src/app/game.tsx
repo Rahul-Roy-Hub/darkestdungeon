@@ -126,7 +126,7 @@ const RoundTimer = observer(() => {
 
   return (
     <div className='absolute bottom-4 left-4'>
-      <div className='text-xl'>
+      <div className='text-xl text-white'>
         Current Round: {time ? (time / 1000).toFixed(2) : '0'} seconds
       </div>
     </div>
@@ -164,7 +164,7 @@ const PlayerHealth = observer(() => {
 const PlayerScore = observer(() => {
   return (
     <div className='absolute top-8 right-8 flex flex-col gap-4'>
-      <div className='font-golondrina text-6xl'>{gameState.score}</div>
+      <div className='font-golondrina text-6xl text-white'>{gameState.score}</div>
     </div>
   );
 });
@@ -172,7 +172,7 @@ const PlayerScore = observer(() => {
 const CurrentRound = observer(() => {
   return (
     <div className='absolute top-12 right-1/2 flex translate-x-1/2 flex-col gap-4'>
-      <div className='font-golondrina text-6xl'>Round: {gameState.level}</div>
+      <div className='font-golondrina text-6xl text-white'>Round: {gameState.level}</div>
     </div>
   );
 });

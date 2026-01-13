@@ -31,9 +31,9 @@ export const ProfileDetails = () => {
   if (!isConnected || !address) {
     return (
       <div className='absolute top-24 right-1/2 mx-auto w-full max-w-screen-xl translate-x-1/2 rounded-xl bg-[#0b171dd0] px-8 py-6'>
-        <div className='font-golondrina text-7xl mb-6'>Profile Details</div>
+        <div className='font-golondrina text-7xl mb-6 text-white'>Profile Details</div>
         <div className='flex flex-col items-center justify-center py-12'>
-          <p className='text-xl text-neutral-300 mb-6'>Please connect your wallet to view your profile</p>
+          <p className='text-xl text-white mb-6'>Please connect your wallet to view your profile</p>
           <ConnectButton />
         </div>
       </div>
@@ -43,12 +43,12 @@ export const ProfileDetails = () => {
   return (
     <div className='absolute top-24 right-1/2 mx-auto w-full max-w-screen-xl translate-x-1/2 rounded-xl bg-[#0b171dd0] px-8 py-6 max-h-[80vh] overflow-y-auto'>
       <div className='flex items-center justify-between mb-6'>
-        <div className='font-golondrina text-7xl'>Profile Details</div>
+        <div className='font-golondrina text-7xl text-white'>Profile Details</div>
         <Button
           onClick={() => refetchProfileData()}
           disabled={isLoading}
           variant="outline"
-          className="flex items-center gap-2"
+          className="flex items-center gap-2 text-white border-white hover:bg-white/10"
         >
           <RefreshCw className={`h-4 w-4 ${isLoading ? 'animate-spin' : ''}`} />
           Refresh
@@ -57,15 +57,15 @@ export const ProfileDetails = () => {
       
       {isLoading && (
         <div className='flex items-center justify-center py-12'>
-          <p className='text-xl text-neutral-300'>Loading profile data...</p>
+          <p className='text-xl text-white'>Loading profile data...</p>
         </div>
       )}
       
       {isError && (
         <div className='flex flex-col items-center justify-center py-12'>
           <p className='text-xl text-red-400 mb-4'>Error loading profile data</p>
-          <p className='text-sm text-neutral-400'>{error?.message || 'Unknown error occurred'}</p>
-          <Button onClick={() => refetchProfileData()} className="mt-4">
+          <p className='text-sm text-white'>{error?.message || 'Unknown error occurred'}</p>
+          <Button onClick={() => refetchProfileData()} className="mt-4 text-white border-white hover:bg-white/10" variant="outline">
             Try Again
           </Button>
         </div>

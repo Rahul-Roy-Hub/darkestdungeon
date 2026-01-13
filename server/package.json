@@ -1,7 +1,7 @@
 {
-  "name": "ddungeon-multiplayer-server",
+  "name": "darkestdungeon-multiplayer-server",
   "version": "1.0.0",
-  "description": "WebSocket server for DDungeon multiplayer",
+  "description": "WebSocket server for Darkest Dungeon multiplayer",
   "main": "server-example.js",
   "scripts": {
     "start": "node server-example.js",

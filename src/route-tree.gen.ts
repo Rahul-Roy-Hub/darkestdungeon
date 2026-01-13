@@ -12,76 +12,32 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-// Import Routes
+import { Route as rootRouteImport } from './app/__root';
+import { Route as SettingsRouteImport } from './app/settings';
+import { Route as ProfileRouteImport } from './app/profile';
+import { Route as GameRouteImport } from './app/game';
+import { Route as IndexRouteImport } from './app/index';
 
-import { Route as rootRoute } from './app/__root';
-import { Route as SettingsImport } from './app/settings';
-import { Route as ProfileImport } from './app/profile';
-import { Route as GameImport } from './app/game';
-import { Route as IndexImport } from './app/index';
-
-// Create/Update Routes
-
-const SettingsRoute = SettingsImport.update({
+const SettingsRoute = SettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any);
-
-const ProfileRoute = ProfileImport.update({
+const ProfileRoute = ProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any);
-
-const GameRoute = GameImport.update({
+const GameRoute = GameRouteImport.update({
   id: '/game',
   path: '/game',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any);
-
-const IndexRoute = IndexImport.update({
+const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any);
-
-// Populate the FileRoutesByPath interface
-
-declare module '@tanstack/react-router' {
-  interface FileRoutesByPath {
-    '/': {
-      id: '/';
-      path: '/';
-      fullPath: '/';
-      preLoaderRoute: typeof IndexImport;
-      parentRoute: typeof rootRoute;
-    };
-    '/game': {
-      id: '/game';
-      path: '/game';
-      fullPath: '/game';
-      preLoaderRoute: typeof GameImport;
-      parentRoute: typeof rootRoute;
-    };
-    '/profile': {
-      id: '/profile';
-      path: '/profile';
-      fullPath: '/profile';
-      preLoaderRoute: typeof ProfileImport;
-      parentRoute: typeof rootRoute;
-    };
-    '/settings': {
-      id: '/settings';
-      path: '/settings';
-      fullPath: '/settings';
-      preLoaderRoute: typeof SettingsImport;
-      parentRoute: typeof rootRoute;
-    };
-  }
-}
-
-// Create and export the route tree
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute;
@@ -89,22 +45,19 @@ export interface FileRoutesByFullPath {
   '/profile': typeof ProfileRoute;
   '/settings': typeof SettingsRoute;
 }
-
 export interface FileRoutesByTo {
   '/': typeof IndexRoute;
   '/game': typeof GameRoute;
   '/profile': typeof ProfileRoute;
   '/settings': typeof SettingsRoute;
 }
-
 export interface FileRoutesById {
-  __root__: typeof rootRoute;
+  __root__: typeof rootRouteImport;
   '/': typeof IndexRoute;
   '/game': typeof GameRoute;
   '/profile': typeof ProfileRoute;
   '/settings': typeof SettingsRoute;
 }
-
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath;
   fullPaths: '/' | '/game' | '/profile' | '/settings';
@@ -113,12 +66,44 @@ export interface FileRouteTypes {
   id: '__root__' | '/' | '/game' | '/profile' | '/settings';
   fileRoutesById: FileRoutesById;
 }
-
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute;
   GameRoute: typeof GameRoute;
   ProfileRoute: typeof ProfileRoute;
   SettingsRoute: typeof SettingsRoute;
+}
+
+declare module '@tanstack/react-router' {
+  interface FileRoutesByPath {
+    '/settings': {
+      id: '/settings';
+      path: '/settings';
+      fullPath: '/settings';
+      preLoaderRoute: typeof SettingsRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    '/profile': {
+      id: '/profile';
+      path: '/profile';
+      fullPath: '/profile';
+      preLoaderRoute: typeof ProfileRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    '/game': {
+      id: '/game';
+      path: '/game';
+      fullPath: '/game';
+      preLoaderRoute: typeof GameRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    '/': {
+      id: '/';
+      path: '/';
+      fullPath: '/';
+      preLoaderRoute: typeof IndexRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+  }
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -127,35 +112,6 @@ const rootRouteChildren: RootRouteChildren = {
   ProfileRoute: ProfileRoute,
   SettingsRoute: SettingsRoute,
 };
-
-export const routeTree = rootRoute
+export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>();
-
-/* ROUTE_MANIFEST_START
-{
-  "routes": {
-    "__root__": {
-      "filePath": "__root.tsx",
-      "children": [
-        "/",
-        "/game",
-        "/profile",
-        "/settings"
-      ]
-    },
-    "/": {
-      "filePath": "index.tsx"
-    },
-    "/game": {
-      "filePath": "game.tsx"
-    },
-    "/profile": {
-      "filePath": "profile.tsx"
-    },
-    "/settings": {
-      "filePath": "settings.tsx"
-    }
-  }
-}
-ROUTE_MANIFEST_END */

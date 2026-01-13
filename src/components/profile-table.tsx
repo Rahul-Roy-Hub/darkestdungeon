@@ -48,10 +48,10 @@ const columns: ColumnDef<Game>[] = [
       const gameId = row.original.id;
 
       return (
-        <div className='flex flex-row items-center gap-2'>
+        <div className='flex flex-row items-center gap-2 text-white'>
           {gameId}
           <Button
-            className='m-0 h-8 w-8 p-0'
+            className='m-0 h-8 w-8 p-0 text-white hover:text-white/80'
             variant='link'
             onClick={async () => {
               await navigator.clipboard.writeText(gameId);
@@ -70,6 +70,7 @@ const columns: ColumnDef<Game>[] = [
       return (
         <Button
           variant='link'
+          className='text-white hover:text-white/80'
           onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
         >
           Created At
@@ -94,7 +95,7 @@ const columns: ColumnDef<Game>[] = [
         options
       );
 
-      return formattedDate;
+      return <div className='text-white'>{formattedDate}</div>;
     },
   },
   {
@@ -103,7 +104,7 @@ const columns: ColumnDef<Game>[] = [
     cell: ({ row }) => {
       const totalScore = row.original.record.totalScore;
 
-      return <div>{totalScore.toLocaleString()}</div>;
+      return <div className='text-white'>{totalScore.toLocaleString()}</div>;
     },
   },
   {
@@ -112,7 +113,7 @@ const columns: ColumnDef<Game>[] = [
     cell: ({ row }) => {
       const totalRounds = row.original.record.totalRounds;
 
-      return <div>{totalRounds.toLocaleString()}</div>;
+      return <div className='text-white'>{totalRounds.toLocaleString()}</div>;
     },
   },
 ];
@@ -143,7 +144,7 @@ export const ProfileTable = ({ data }: DataTableProps) => {
     <div>
       <div className='flex items-center py-4'>
         <Input
-          className='h-8 max-w-xs border-none bg-neutral-300 text-secondary outline-none placeholder:text-secondary'
+          className='h-8 max-w-xs border border-white/30 bg-neutral-800/50 text-white outline-none placeholder:text-neutral-400'
           placeholder='Filter by Id...'
           value={
             (table.getColumn('id')?.getFilterValue() as string | null) ?? ''
@@ -160,7 +161,7 @@ export const ProfileTable = ({ data }: DataTableProps) => {
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id} className='text-primary'>
+                    <TableHead key={header.id} className='text-white'>
                       {header.isPlaceholder
                         ? null
                         : flexRender(
@@ -193,7 +194,7 @@ export const ProfileTable = ({ data }: DataTableProps) => {
             ) : (
               <TableRow>
                 <TableCell
-                  className='h-24 text-center'
+                  className='h-24 text-center text-white'
                   colSpan={columns.length}
                 >
                   No results.
