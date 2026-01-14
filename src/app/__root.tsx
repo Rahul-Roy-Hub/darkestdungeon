@@ -1,5 +1,6 @@
 import { Outlet, createRootRoute } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/router-devtools';
+import { Analytics } from '@vercel/analytics/next';
 import { ProviderTree } from '~/providers';
 
 import '../styles/globals.css';
@@ -13,6 +14,7 @@ const RootComponent = () => {
       <ProviderTree>
         <Outlet />
       </ProviderTree>
+      <Analytics />
     </>
   );
 };

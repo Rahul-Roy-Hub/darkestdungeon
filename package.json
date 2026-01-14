@@ -23,6 +23,7 @@
     "@tanstack/react-router": "^1.82.8",
     "@tanstack/react-table": "^8.20.6",
     "@tanstack/router-devtools": "^1.82.8",
+    "@vercel/analytics": "^1.6.1",
     "@wagmi/core": "^2.14.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
